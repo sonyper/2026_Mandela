@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="An interactive cognitive psychology demonstration of the Mandela Effect, false memory, and confidence calibration.">
+<title>The Mandela Effect Lab</title>
+<style>
+:root{--ink:#182235;--muted:#647089;--paper:#f5f6fb;--card:#fff;--purple:#6657d9;--purple2:#eeeaff;--teal:#168b83;--line:#e4e7f0;--gold:#f0b84b;--red:#c85c69;--shadow:0 18px 55px rgba(30,39,68,.09)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,#e9e7ff 0,transparent 28%),radial-gradient(circle at 100% 15%,#e0f5f2 0,transparent 25%),var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
+header{max-width:1050px;margin:auto;padding:24px 24px 10px;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.03em}.brandmark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#7769ed,#26a99c);display:grid;place-items:center;color:#fff;font-size:20px}.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);background:#ffffffa8;padding:7px 11px;border-radius:99px}
+main{max-width:850px;margin:28px auto 70px;padding:0 20px}.panel{background:var(--card);border:1px solid #e9eaf2;border-radius:25px;box-shadow:var(--shadow);padding:clamp(24px,5vw,48px)}.eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:var(--purple);margin:0 0 12px}h1{font-size:clamp(35px,6vw,58px);line-height:1.02;letter-spacing:-.055em;margin:0 0 17px}h2{font-size:clamp(25px,4vw,34px);letter-spacing:-.04em;margin:0 0 12px}h3{margin:0 0 8px;font-size:19px}p{line-height:1.65;color:var(--muted)}.lead{font-size:18px;max-width:650px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{border:0;border-radius:13px;padding:14px 20px;font-weight:750;font-size:15px;cursor:pointer;transition:.18s}.btn:hover{transform:translateY(-1px)}.primary{background:var(--purple);color:white;box-shadow:0 8px 20px #6657d944}.secondary{background:#f0f1f8;color:var(--ink)}.small{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0}.mini{background:#f7f7fc;border:1px solid var(--line);padding:16px;border-radius:16px}.mini strong{display:block;font-size:14px;margin-bottom:5px}.mini span{font-size:12px;color:var(--muted);line-height:1.4}.notice{padding:14px 16px;background:#f5f3ff;border-left:3px solid var(--purple);border-radius:9px;color:#514a86;font-size:13px;line-height:1.55;margin-top:18px}
+.progress-wrap{height:7px;background:#eceef5;border-radius:9px;overflow:hidden;margin:22px 0 9px}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--teal));transition:width .3s}.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:700}.question-meta{display:flex;justify-content:space-between;align-items:center;margin:23px 0 14px}.pill{background:var(--purple2);color:var(--purple);font-size:12px;font-weight:800;padding:7px 11px;border-radius:99px}.prompt{font-size:19px;color:var(--ink);font-weight:650;line-height:1.45;margin:12px 0 22px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{background:white;border:1.5px solid var(--line);border-radius:15px;padding:18px 16px;text-align:left;min-height:90px;cursor:pointer;font-size:17px;font-weight:750;color:var(--ink);transition:.15s}.choice:hover{border-color:#aaa0f3;background:#fbfaff}.choice.selected{border-color:var(--purple);background:#f3f0ff;box-shadow:0 0 0 3px #6657d91a}.choice small{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-top:8px}.confidence{margin-top:28px;padding:19px;background:#f8f8fc;border-radius:16px}.confidence-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.confidence output{font-size:23px;font-weight:850;color:var(--purple)}input[type=range]{width:100%;accent-color:var(--purple);margin:18px 0 6px}.range-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}.continue{margin-top:22px;width:100%}.continue:disabled{opacity:.4;cursor:not-allowed;transform:none}.center{text-align:center}.big-number{font-size:clamp(48px,9vw,78px);font-weight:900;letter-spacing:-.06em;color:var(--purple);line-height:1.05}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0}.result{padding:18px;border-radius:16px;background:#f7f7fc;border:1px solid var(--line)}.result b{font-size:27px;display:block;letter-spacing:-.04em}.result span{font-size:12px;color:var(--muted)}.barrow{display:grid;grid-template-columns:130px 1fr 42px;gap:10px;align-items:center;margin:13px 0;font-size:12px;color:var(--muted)}.bar{height:9px;background:#eceef5;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--teal);border-radius:9px}.item-review{border-top:1px solid var(--line);padding:14px 0;display:grid;grid-template-columns:1fr auto;gap:12px;font-size:13px}.correct{color:var(--teal);font-weight:800}.incorrect{color:var(--red);font-weight:800}.hidden{display:none!important}.footer{max-width:850px;margin:-45px auto 35px;padding:0 20px;color:#8991a4;font-size:11px;text-align:center}
+@media(max-width:620px){header{padding:18px}.tag{display:none}.grid,.result-grid{grid-template-columns:1fr}.choices{grid-template-columns:1fr}.choice{min-height:70px}.barrow{grid-template-columns:100px 1fr 35px}.panel{border-radius:20px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="brandmark">✳</div><span>THE MEMORY LAB</span></div><div class="tag">PSYC 402 · Memory & Cognition</div></header>
+<main>
+<section id="welcome" class="panel">
+<p class="eyebrow">An interactive memory experiment</p>
+<h1>The Mandela<br>Effect Lab</h1>
+<p class="lead">How certain are you about things you remember? Test your memory against familiar cultural details—and find out whether confidence always tells you when a memory is accurate.</p>
+<div class="grid">
+<div class="mini"><strong>01 · Remember</strong><span>Choose the version you believe is authentic.</span></div>
+<div class="mini"><strong>02 · Rate</strong><span>Report how confident you feel after each choice.</span></div>
+<div class="mini"><strong>03 · Discover</strong><span>Compare confidence with accuracy and learn about false memories.</span></div>
+</div>
+<div class="notice"><b>Before you begin:</b> This activity takes about 7–10 minutes. It contains 12 multiple-choice memory questions. Some options are deliberately plausible but incorrect. You may stop at any time. Do not enter your name, email, or other identifying information.</div>
+<div style="margin-top:22px;display:flex;gap:10px;align-items:flex-start"><input type="checkbox" id="consent" style="margin-top:5px;accent-color:var(--purple)"><label for="consent" class="small">I am at least 18 years old, understand that this is a classroom demonstration, and voluntarily agree to continue. I understand that my anonymous answers and confidence ratings will be saved automatically to instructor-controlled research storage when I finish. No name or email address is collected here.</label></div>
+<div class="actions"><button class="btn primary" id="start" disabled>Start the experiment →</button></div>
+<p class="small">Educational prototype, not a clinical or diagnostic assessment. Participation should follow your instructor's research and consent procedures.</p>
+</section>
+
+<section id="task" class="panel hidden">
+<div class="progress-label"><span>MEMORY CHALLENGE</span><span id="count">Question 1 of 12</span></div><div class="progress-wrap"><div class="progress" id="progress"></div></div>
+<div class="question-meta"><span class="pill" id="category">Pop culture</span><span class="small">Choose one answer</span></div>
+<p class="prompt" id="prompt"></p>
+<div class="choices" id="choices"></div>
+<div class="confidence">
+<div class="confidence-top"><div><h3>How confident are you?</h3><span class="small">Rate your confidence in the answer you selected.</span></div><output id="confidenceValue" aria-live="polite">Move the slider</output></div>
+<input id="confidence" type="range" min="1" max="100" step="1" value="50" aria-label="Confidence level, from 1 to 100 percent"><div class="range-labels"><span>1% · Not confident</span><span>100% · Certain</span></div>
+</div>
+<button class="btn primary continue" id="next" disabled>Next question →</button>
+</section>
+
+<section id="results" class="panel hidden">
+<p class="eyebrow">Your memory profile</p><h2>How did your memory do?</h2><p class="lead" id="resultIntro"></p>
+<div class="result-grid">
+<div class="result"><b id="accuracy">—</b><span>Correct answers</span></div>
+<div class="result"><b id="lures">—</b><span>False-memory choices</span></div>
+<div class="result"><b id="confidenceAvg">—</b><span>Average confidence</span></div>
+</div>
+<h3>Confidence vs. accuracy</h3><p class="small">These two measures can differ. A high confidence score does not guarantee that a response is correct.</p>
+<div class="barrow"><span>Average confidence</span><div class="bar"><i id="confidenceBar"></i></div><b id="confidenceText"></b></div>
+<div class="barrow"><span>Actual accuracy</span><div class="bar"><i id="accuracyBar"></i></div><b id="accuracyText"></b></div>
+<div class="notice" id="interpretation"></div>
+<h3 style="margin-top:28px">What happened in your answers?</h3><div id="review"></div>
+<div class="actions"><button class="btn primary" id="download">Download my anonymous data (CSV)</button><button class="btn secondary" id="learn">Explore the psychology →</button></div>
+<p class="small">Your anonymous results are sent automatically to instructor-controlled DataPipe storage after you finish. Local CSV files are available as a backup if saving fails.</p>
+</section>
+
+<section id="learnPanel" class="panel hidden">
+<p class="eyebrow">The science behind the experience</p><h2>Why can a false memory feel real?</h2>
+<p>The <b>Mandela Effect</b> is a popular label for a shared false memory: different people report remembering the same detail, even though the recollection does not match the available historical record. The label describes a pattern of reports, not a single mechanism in the brain. Several well-studied memory processes can help explain why a mistaken detail may feel familiar, coherent, and convincing.</p>
+
+<h3 style="margin-top:24px">1. False memories: remembering something that did not happen</h3>
+<p>A <b>false memory</b> is a recollection that contains inaccurate information or refers to an event or detail that did not occur as remembered. False memories can range from small errors—such as remembering a logo detail incorrectly—to richer recollections that include details, feelings, or context. They are not necessarily deliberate lies. A person can sincerely remember something that is inaccurate.</p>
+<p>Human memory is <b>reconstructive</b>, rather than a literal recording. When we retrieve an event or familiar image, we use pieces of stored information alongside expectations, general knowledge, and cues present in the moment. This is efficient: it helps us make sense of incomplete information. But reconstruction can also introduce details that fit what we expect to see.</p>
+<p>One related finding is the <b>misinformation effect</b>. After an event is experienced, exposure to misleading information about it can influence what a person later reports remembering. For example, a leading question, a misleading description, or a discussion with another person may become mixed into the later recollection. Repeatedly encountering a particular version can also increase its familiarity, even when familiarity is not evidence that the version is correct.</p>
+<div class="mini" style="margin:14px 0"><strong>How this connects to the activity</strong><span>Some incorrect options are designed to feel plausible because they fit common expectations or familiar versions of a cultural detail. Choosing one does not mean a participant has a generally poor memory; it illustrates how a specific memory judgment can be influenced by familiarity and reconstruction.</span></div>
+
+<h3 style="margin-top:26px">2. Source-monitoring errors: remembering the information, but not its origin</h3>
+<p><b>Source monitoring</b> is the process of deciding where a memory came from. We may remember a piece of information but be less certain whether we saw it in the original source, heard it from a friend, read it in a comment, encountered it in a parody, or merely imagined it.</p>
+<p>A <b>source-monitoring error</b> occurs when information is attributed to the wrong source. The content may feel familiar, while the context that would identify its origin is missing or confused. For instance, someone might vividly picture a logo detail after seeing it in a fan-made image, then later attribute that image to the official product.</p>
+<p>Source judgments often rely on qualities such as perceptual detail, the context in which information was encountered, and whether the memory feels like something perceived or imagined. These cues are useful but imperfect. When the original context is weak or forgotten, people may infer a source based on what seems most likely.</p>
+<div class="mini" style="margin:14px 0"><strong>How this connects to the activity</strong><span>Many Mandela Effect examples circulate through conversation, memes, online quizzes, and altered images. Those repeated encounters can make a version feel familiar while making its original source difficult to identify. This app does not directly measure source monitoring; it demonstrates recognition choices that may be affected by source confusion.</span></div>
+
+<h3 style="margin-top:26px">3. Metacognition: thinking about how well you remember</h3>
+<p><b>Metacognition</b> means monitoring and evaluating our own thinking. In memory tasks, this includes judging whether an answer is likely to be correct, deciding how confident we feel, and recognizing when we might be guessing. Confidence is a metacognitive judgment: it reflects a person's sense of how strong or reliable a memory seems.</p>
+<p>Confidence and accuracy are related, but they are not identical. A person can be highly confident and still be wrong, or feel uncertain while giving a correct answer. Familiarity, fluency, repetition, and how easily an answer comes to mind can all influence confidence. Those feelings can be informative, but they are not a guarantee of accuracy.</p>
+<p><b>Calibration</b> describes how well confidence matches actual performance. If someone gives many answers with 90% confidence, a well-calibrated pattern would be for roughly 90% of those answers to be correct over a sufficiently large set of comparable judgments. A single person's score on this short activity is only a small snapshot, not a stable measure of their metacognitive ability.</p>
+<p>Another useful distinction is between <b>confidence level</b> and <b>confidence discrimination</b>. Confidence level is how confident someone feels overall. Discrimination is whether they give higher confidence to answers that are correct than to answers that are incorrect. Someone can be very confident on average but still have difficulty distinguishing their correct memories from their mistaken ones.</p>
+<div class="mini" style="margin:14px 0"><strong>How this connects to the activity</strong><span>After each choice, you rated confidence from 50% to 100%. The results compare average confidence with the percentage correct. This gives a simple view of calibration, but a more complete analysis would also compare confidence on correct versus incorrect trials and examine patterns across a larger sample.</span></div>
+
+<h3 style="margin-top:26px">Putting the processes together</h3>
+<p>A shared false memory does not require everyone to have had the same experience or to be remembering an identical event. People may share cultural knowledge, expectations, media exposure, and conversations. Similar cues can guide reconstruction in similar directions; source-monitoring mistakes can blur where a detail was encountered; and metacognitive feelings of familiarity or certainty can make the resulting recollection feel especially convincing.</p>
+<p>These are possible cognitive contributions, not a complete explanation for every example called the Mandela Effect. To identify the cause of a particular shared memory, researchers would need to test the relevant stimuli, exposure histories, sources, and memory judgments directly.</p>
+<div class="notice"><b>Important limitations:</b> This activity is an educational prototype, not a validated psychological test. It cannot diagnose memory ability, establish why a particular Mandela Effect occurs, or show that a false memory is universal. Familiarity with the examples varies across participants, and the short item set is a convenience sample. The task measures recognition choices and confidence; it does not directly measure source-monitoring ability or the formation of a false autobiographical memory.</div>
+<div class="actions"><button class="btn secondary" id="backResults">Back to results</button></div>
+</section>
+</main>
+<div class="footer">THE MANDELA EFFECT LAB · PSYC 402 · Anonymous results are saved to instructor-controlled storage</div>
+<script>
+const items = [
+ {cat:"Names & characters",q:"Which spelling is the authentic name of the family in the children's book series?",a:["The Berenstain Bears","The Berenstein Bears"],correct:0,why:"The published series is titled The Berenstain Bears. The similar '-stein' spelling is a commonly reported alternative recollection."},
+ {cat:"Animation",q:"Which title is the authentic name of the classic cartoon franchise?",a:["Looney Toons","Looney Tunes"],correct:1,why:"The franchise is Looney Tunes. 'Toons' seems plausible because the characters are cartoons."},
+ {cat:"Everyday products",q:"Which spelling is the actual brand name of the fabric refresher?",a:["Febreze","Febreeze"],correct:0,why:"The brand is spelled Febreze, with one 'e' after the 'r' sound."},
+ {cat:"Board games",q:"In the classic Monopoly mascot design, what does the character traditionally wear?",a:["A top hat, but no monocle","A top hat and a monocle"],correct:0,why:"The familiar mascot, often called Rich Uncle Pennybags, is not traditionally depicted with a monocle."},
+ {cat:"Food & packaging",q:"Which detail appears in the traditional Fruit of the Loom logo?",a:["A cornucopia behind the fruit","A cluster of fruit without a cornucopia"],correct:1,why:"The traditional logo shows fruit without a cornucopia. Many people report remembering a horn-shaped basket."},
+ {cat:"Animation",q:"Which detail is part of Pikachu's standard design?",a:["A plain yellow tail with a brown base","A yellow tail with a black tip"],correct:0,why:"Pikachu's tail is yellow with a brown patch at the base; it does not have a black tip."},
+ {cat:"Food & brands",q:"Which spelling is the authentic name of the breakfast cereal brand?",a:["Fruit Loops","Froot Loops"],correct:1,why:"The cereal brand is spelled Froot Loops. The alternative spelling 'Fruit' is a plausible phonetic substitution."},
+ {cat:"Brand names",q:"Which is the authentic name of the peanut butter brand?",a:["Jif","Jiffy"],correct:0,why:"The brand is Jif. Some people blend the name with other familiar brands or phrases."},
+ {cat:"Movies",q:"What is the famous line associated with the Evil Queen's mirror in Disney's Snow White (1937)?",a:["'Mirror, mirror on the wall…'","'Magic mirror on the wall…'"],correct:1,why:"In the 1937 Disney film, the Queen says 'Magic mirror on the wall.' 'Mirror, mirror' appears in other versions and adaptations of the tale."},
+ {cat:"Everyday products",q:"Which punctuation is used in the familiar chocolate wafer brand name?",a:["Kit-Kat","KitKat"],correct:1,why:"The brand is styled KitKat, without a hyphen. The visual styling of packaging has varied over time."},
+ {cat:"Clothing",q:"Which detail is part of the classic Curious George character design?",a:["He has a tail","He has no tail"],correct:1,why:"Curious George is depicted without a tail, despite being a monkey. A tail may feel like a natural expectation."},
+ {cat:"Names & characters",q:"Which is the correct title of the Dr. Seuss book?",a:["The Cat in the Hat","The Cat in Hat"],correct:0,why:"The title is The Cat in the Hat. This item is a straightforward title-recognition check rather than a famous Mandela Effect example."}
+];
+let order=[],responses=[],idx=0,selected=null,sessionId=makeId(),startedAt=null;
+function makeId(){return "MEL-"+Math.random().toString(36).slice(2,8).toUpperCase()}
+const $=id=>document.getElementById(id);
+function show(id){["welcome","task","results","learnPanel"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+$("consent").addEventListener("change",e=>$("start").disabled=!e.target.checked);
+$("start").addEventListener("click",()=>{order=items.map((_,i)=>i).sort(()=>Math.random()-.5);responses=[];idx=0;startedAt=new Date();show("task");render()});
+function render(){
+ selected=null;const item=items[order[idx]];
+ $("count").textContent=`Question ${idx+1} of ${items.length}`;$("progress").style.width=`${idx/items.length*100}%`;
+ $("category").textContent=item.cat;$("prompt").textContent=item.q;$("choices").innerHTML="";
+ item.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="choice";b.innerHTML=`${String.fromCharCode(65+i)}. ${answer}<small>Select this answer</small>`;b.addEventListener("click",()=>{selected=i;document.querySelectorAll(".choice").forEach((el,j)=>el.classList.toggle("selected",j===i));$("next").disabled=false});$("choices").appendChild(b)});
+ $("confidence").value=50;$("confidenceValue").textContent="Move the slider";$("next").disabled=true;$("next").textContent=idx===items.length-1?"See my results →":"Next question →";
+}
+$("confidence").addEventListener("input",e=>$("confidenceValue").textContent=e.target.value+"%");
+$("next").addEventListener("click",()=>{if(selected===null)return;const item=items[order[idx]];responses.push({itemIndex:order[idx],selected,correct:selected===item.correct,confidence:Number($("confidence").value),time:new Date().toISOString()});idx++;if(idx<items.length)render();else finish()});
+function finish(){
+ show("results");const correct=responses.filter(r=>r.correct).length,lures=items.length-correct,avg=Math.round(responses.reduce((s,r)=>s+r.confidence,0)/responses.length),acc=Math.round(correct/items.length*100);
+ $("accuracy").textContent=`${correct}/${items.length}`;$("lures").textContent=`${lures}/${items.length}`;$("confidenceAvg").textContent=avg+"%";
+ $("confidenceBar").style.width=avg+"%";$("accuracyBar").style.width=acc+"%";$("confidenceText").textContent=avg+"%";$("accuracyText").textContent=acc+"%";
+ $("resultIntro").textContent=acc>=80?"You recognized most of these details accurately. Now compare your confidence with your performance.":acc>=50?"You recognized some details, but several plausible alternatives were tempting. See how your confidence compared with accuracy.":"Many of the alternative details were convincing. That is the point of the exercise: a vivid or familiar feeling is not a guarantee of accuracy.";
+ const gap=avg-acc;$("interpretation").textContent=gap>10?`Your average confidence was ${gap} percentage points higher than your accuracy. In this task, confidence exceeded performance. This does not mean you are generally overconfident; it describes only these responses.`:gap< -10?`Your accuracy was ${Math.abs(gap)} percentage points higher than your average confidence. You performed better than your confidence ratings suggested on this set of questions.`:"Your average confidence and accuracy were relatively close on this set. A close overall match does not mean confidence was accurate on every individual question.";
+ $("review").innerHTML="";responses.forEach((r,n)=>{const it=items[r.itemIndex],el=document.createElement("div");el.className="item-review";const chosen=it.a[r.selected],correctAnswer=it.a[it.correct];el.innerHTML=`<div><b>${n+1}. ${it.q}</b><br><span class="${r.correct?'correct':'incorrect'}">${r.correct?'Correct':'Not quite'}</span> · You chose: ${chosen}<br><span class="small">Correct answer: ${correctAnswer}<br>${it.why}</span></div><div style="text-align:right"><b>${r.confidence}%</b><br><span class="small">confidence</span></div>`;$("review").appendChild(el)});
+}
+$("download").addEventListener("click",()=>{
+ const headers=["session_id","question_number","item_id","category","question","selected_answer","correct_answer","is_correct","confidence_percent","response_time_utc"];
+ const rows=responses.map((r,n)=>{const it=items[r.itemIndex];return [sessionId,n+1,r.itemIndex+1,it.cat,it.q,it.a[r.selected],it.a[it.correct],r.correct,r.confidence,r.time]});
+ const csv=[headers,...rows].map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\n");
+ const blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`mandela-lab-${sessionId}.csv`;a.click();URL.revokeObjectURL(url);
+});
+$("learn").addEventListener("click",()=>show("learnPanel"));$("backResults").addEventListener("click",()=>show("results"));
+</script>
+<script src="datapipe.js"></script>
+<script src="confidence_required.js"></script>
+</body></html>
