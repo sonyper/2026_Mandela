@@ -17,7 +17,31 @@ main{max-width:850px;margin:28px auto 70px;padding:0 20px}.panel{background:var(
 <body>
 <header><div class="brand"><div class="brandmark">✳</div><span>THE MEMORY LAB</span></div><div class="tag">PSYC 402 · Memory & Cognition</div></header>
 <main>
-<section id="welcome" class="panel">
+<section id="consent" class="panel">
+<div style="margin-top:26px;border-top:1px solid var(--line);padding-top:24px" aria-labelledby="consentHeading">
+<h2 id="consentHeading">Consent to Participate: Decision-Making and Meta-Cognition</h2>
+<p>You are invited to participate in an online class research project examining <strong>decision-making and meta-cognition</strong>.</p>
+<h3>What will I do?</h3>
+<p>You will complete 3 short activities, in which you will be asked to 1) make judgments about common brands/logos; 2) read short news reports and answer questions about them later; and 3) test your ability to remember objects in a scene. It takes no more than 30 minutes and can be completed online at any time through midnight on December 1, 2026.</p>
+<h3>Who may participate?</h3>
+<p>You must be <strong>18 years of age or older</strong> to participate.</p>
+<h3>Are there risks?</h3>
+<p>The activities involve ordinary judgments and questions similar to those used in psychology demonstrations and research. No more than minimal risk is anticipated.</p>
+<h3>Is participation voluntary?</h3>
+<p>Yes. Participation is voluntary. You may stop participating at any time by closing the browser.</p>
+<h3>How will my information be handled?</h3>
+<p>Your experimental responses will not include your name or identifying information. If you are completing these tasks for PSYC 101 research credit, after you complete all three activities, you will be directed to a <strong>separate form</strong> asking for the information needed to issue such credit.</p>
+<p>The research-credit form will not be linked to your experimental responses. Data records will be anonymized before analysis. The results of this class project will <strong>not be presented publicly</strong>.</p>
+<h3>Research credit</h3>
+<p>Completing the study and the separate research-credit form is worth <strong>0.5 hours of PSYC 101 research credit</strong>.</p>
+<h3>Consent</h3>
+<p>By clicking <strong>“I agree to participate”</strong> below, you confirm that:</p>
+<ul style="line-height:1.7;color:var(--muted)"><li>you are at least 18 years old;</li><li>you have read the information above;</li><li>you understand that participation is voluntary; and</li><li>you agree to participate in this study.</li></ul>
+</div>
+<div class="actions"><button class="btn primary" id="agree">I agree to participate</button></div>
+</section>
+
+<section id="welcome" class="panel hidden">
 <p class="eyebrow">An interactive memory experiment</p>
 <h1>The Mandela<br>Effect Lab</h1>
 <p class="lead">How certain are you about things you remember? Test your memory against familiar cultural details—and find out whether confidence always tells you when a memory is accurate.</p>
@@ -27,8 +51,7 @@ main{max-width:850px;margin:28px auto 70px;padding:0 20px}.panel{background:var(
 <div class="mini"><strong>03 · Discover</strong><span>Compare confidence with accuracy and learn about false memories.</span></div>
 </div>
 <div class="notice"><b>Before you begin:</b> This activity takes about 7–10 minutes. It contains 12 multiple-choice memory questions. Some options are deliberately plausible but incorrect. You may stop at any time. Do not enter your name, email, or other identifying information.</div>
-<div style="margin-top:22px;display:flex;gap:10px;align-items:flex-start"><input type="checkbox" id="consent" style="margin-top:5px;accent-color:var(--purple)"><label for="consent" class="small">I am at least 18 years old, understand that this is a classroom demonstration, and voluntarily agree to continue. I understand that my anonymous answers and confidence ratings will be saved automatically to instructor-controlled research storage when I finish. No name or email address is collected here.</label></div>
-<div class="actions"><button class="btn primary" id="start" disabled>Start the experiment →</button></div>
+<div class="actions"><button class="btn primary" id="start">Start the experiment →</button></div>
 <p class="small">Educational prototype, not a clinical or diagnostic assessment. Participation should follow your instructor's research and consent procedures.</p>
 </section>
 
@@ -109,8 +132,8 @@ const items = [
 let order=[],responses=[],idx=0,selected=null,sessionId=makeId(),startedAt=null;
 function makeId(){return "MEL-"+Math.random().toString(36).slice(2,8).toUpperCase()}
 const $=id=>document.getElementById(id);
-function show(id){["welcome","task","results","learnPanel"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
-$("consent").addEventListener("change",e=>$("start").disabled=!e.target.checked);
+function show(id){["consent","welcome","task","results","learnPanel"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+$("agree").addEventListener("click",()=>show("welcome"));
 $("start").addEventListener("click",()=>{order=items.map((_,i)=>i).sort(()=>Math.random()-.5);responses=[];idx=0;startedAt=new Date();show("task");render()});
 function render(){
  selected=null;const item=items[order[idx]];
